@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="hu">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title><%= title %></title>
+  <link rel='stylesheet' href='/stylesheets/style.css' />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+</head>
+
+<body>
+  <%- include('header') -%>
+
+  <div class="container my-5">
+    <h1 class="mb-4">Adatbázis Menü</h1>
+
+    <% if (error) { %>
+    <div class="alert alert-danger" role="alert">
+      <%= error %>
+    </div>
+    <% } %>
+
+    <div class="card mb-4">
+      <div class="card-header bg-primary text-white">
+        <h3 class="mb-0">Kategóriák</h3>
+      </div>
+      <div class="card-body">
+        <div class="table-responsive">
+          <table class="table table-striped">
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Név</th>
+                <th>Leírás</th>
+                <th>Létrehozva</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% if (categories && categories.length > 0) { %>
+              <% categories.forEach(category => { %>
+              <tr>
+                <td><%= category.id %></td>
+                <td><%= category.name %></td>
+                <td><%= category.description || '-' %></td>
+                <td><%= new Date(category.created_at).toLocaleString('hu-HU') %></td>
+              </tr>
+              <% }); %>
+              <% } else { %>
+              <tr>
+                <td colspan="4" class="text-center">Nincs adat</td>
+              </tr>
+              <% } %>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <div class="card mb-4">
+      <div class="card-header bg-success text-white">
+        <h3 class="mb-0">Termékek</h3>
+      </div>
+      <div class="card-body">
+        <div class="table-responsive">
+          <table class="table table-striped">
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Név</th>
+                <th>Leírás</th>
+                <th>Ár</th>
+                <th>Készlet</th>
+                <th>Létrehozva</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% if (products && products.length > 0) { %>
+              <% products.forEach(product => { %>
+              <tr>
+                <td><%= product.id %></td>
+                <td><%= product.name %></td>
+                <td><%= product.description || '-' %></td>
+                <td><%= product.price.toLocaleString('hu-HU') %> Ft</td>
+                <td><%= product.stock %></td>
+                <td><%= new Date(product.created_at).toLocaleString('hu-HU') %></td>
+              </tr>
+              <% }); %>
+              <% } else { %>
+              <tr>
+                <td colspan="6" class="text-center">Nincs adat</td>
+              </tr>
+              <% } %>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <div class="card mb-4">
+      <div class="card-header bg-info text-white">
+        <h3 class="mb-0">Rendelések</h3>
+      </div>
+      <div class="card-body">
+        <div class="table-responsive">
+          <table class="table table-striped">
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Felhasználó</th>
+                <th>Termék</th>
+                <th>Mennyiség</th>
+                <th>Összeg</th>
+                <th>Státusz</th>
+                <th>Létrehozva</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% if (orders && orders.length > 0) { %>
+              <% orders.forEach(order => { %>
+              <tr>
+                <td><%= order.id %></td>
+                <td><%= order.username || 'N/A' %></td>
+                <td><%= order.product_name || 'N/A' %></td>
+                <td><%= order.quantity %></td>
+                <td><%= order.total_price.toLocaleString('hu-HU') %> Ft</td>
+                <td><span class="badge bg-secondary"><%= order.status %></span></td>
+                <td><%= new Date(order.created_at).toLocaleString('hu-HU') %></td>
+              </tr>
+              <% }); %>
+              <% } else { %>
+              <tr>
+                <td colspan="7" class="text-center">Nincs adat</td>
+              </tr>
+              <% } %>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+    crossorigin="anonymous"></script>
+</body>
+
+</html>
+
