@@ -42,7 +42,7 @@
         <h3 class="mb-0"><%= editing ? 'Termék szerkesztése' : 'Új termék hozzáadása' %></h3>
       </div>
       <div class="card-body">
-        <form method="POST" action="<%= editing ? '/crud/update/' + editing.id : '/crud/create' %>">
+        <form method="POST" action="<%= editing ? '/app148/crud/update/' + editing.id : '/app148/crud/create' %>">
           <div class="row">
             <div class="col-md-6 mb-3">
               <label for="name" class="form-label">Név <span class="text-danger">*</span></label>
@@ -69,7 +69,7 @@
               <%= editing ? 'Frissítés' : 'Hozzáadás' %>
             </button>
             <% if (editing) { %>
-            <a href="/crud" class="btn btn-secondary">Mégse</a>
+            <a href="/app148/crud" class="btn btn-secondary">Mégse</a>
             <% } %>
           </div>
         </form>
@@ -106,8 +106,8 @@
                 <td><%= new Date(product.created_at).toLocaleString('hu-HU') %></td>
                 <td>
                   <div class="btn-group btn-group-sm">
-                    <a href="/crud/edit/<%= product.id %>" class="btn btn-warning">Szerkesztés</a>
-                    <form method="POST" action="/crud/delete/<%= product.id %>" style="display: inline;" 
+                    <a href="/app148/crud/edit/<%= product.id %>" class="btn btn-warning">Szerkesztés</a>
+                    <form method="POST" action="/app148/crud/delete/<%= product.id %>" style="display: inline;" 
                           onsubmit="return confirm('Biztosan törölni szeretné ezt a terméket?');">
                       <button type="submit" class="btn btn-danger">Törlés</button>
                     </form>

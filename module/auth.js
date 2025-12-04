@@ -15,9 +15,26 @@ const checkAuth = (req, res, next) => {
     }
 };
 
+const checkRegistered = (req, res, next) => {
+    if (req.session.user && (req.session.user.role === 'registered' || req.session.user.role === 'admin')) {
+        next();
+    } else {
+        res.redirect('/login');
+    }
+};
 
+const checkAdmin = (req, res, next) => {
+    if (req.session.user && req.session.user.role === 'admin') {
+        next();
+    } else {
+        res.redirect('/');
+    }
+};
 
 module.exports = {
     genPassword,
     checkAuth,
+    checkRegistered,
+    checkAdmin,
 };
+
