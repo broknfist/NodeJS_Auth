@@ -11,8 +11,8 @@ router.get('/', (req, res, next) => {
 router.post('/', async (req, res, next) => {
     const { username, password } = req.body;
     const sql = `
-        INSERT INTO users (username, hash, isAdmin)
-        VALUES ('${username}', '${genPassword(password)}', 0)`;
+        INSERT INTO users (username, hash, role)
+        VALUES ('${username}', '${genPassword(password)}', 'registered')`;
     await query(sql);
 
     res.send('register sent');

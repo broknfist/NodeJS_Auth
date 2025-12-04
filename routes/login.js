@@ -19,9 +19,9 @@ router.post('/', async (req, res, next) => {
     const users = await query(sql);
     if (users.length === 1) {
         req.session.user = users[0];
-        res.redirect('/');
+        res.redirect('/app148/');
     } else {
-        res.redirect('/login');
+        res.redirect('/app148/login');
     }
 
 });
